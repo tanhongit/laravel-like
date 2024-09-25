@@ -2,6 +2,8 @@
 
 namespace CSlant\LaravelLike;
 
+use CSlant\LaravelLike\Traits\LikeRelationship;
+use CSlant\LaravelLike\Traits\Love\LoveCount;
 use CSlant\LaravelLike\Traits\Love\LoveScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -18,15 +20,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  */
 trait HasLove
 {
+    use LikeRelationship;
     use LoveScope;
-
-    /**
-     * Get the count of loves.
-     *
-     * @return int
-     */
-    public function lovesCount(): int
-    {
-        return $this->lovesTo()->count();
-    }
+    use LoveCount;
 }
