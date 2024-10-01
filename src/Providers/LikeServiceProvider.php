@@ -8,8 +8,6 @@ class LikeServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -18,8 +16,6 @@ class LikeServiceProvider extends ServiceProvider
 
     /**
      * Register services.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -29,7 +25,7 @@ class LikeServiceProvider extends ServiceProvider
     /**
      * Get the services provided by the provider.
      *
-     * @return array<string>|null
+     * @return null|array<string>
      */
     public function provides(): ?array
     {
@@ -38,8 +34,6 @@ class LikeServiceProvider extends ServiceProvider
 
     /**
      * Register configs.
-     *
-     * @return void
      */
     protected function registerConfigs(): void
     {
@@ -49,8 +43,6 @@ class LikeServiceProvider extends ServiceProvider
 
     /**
      * Register assets publishing.
-     *
-     * @return void
      */
     public function registerAssetsPublishing(): void
     {
