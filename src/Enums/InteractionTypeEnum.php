@@ -4,7 +4,7 @@ namespace CSlant\LaravelLike\Enums;
 
 enum InteractionTypeEnum: string
 {
-    case DEFAULT = 'default';
+    case NEUTRAL = 'neutral';
     case LIKE = 'like';
     case DISLIKE = 'dislike';
     case LOVE = 'love';
@@ -76,13 +76,33 @@ enum InteractionTypeEnum: string
      *
      * @return InteractionTypeEnum
      */
-    public function getTypeByValue(string $value): InteractionTypeEnum
+    public static function getTypeByValue(string $value): InteractionTypeEnum
     {
         return match ($value) {
             self::LIKE->value => self::LIKE,
             self::DISLIKE->value => self::DISLIKE,
             self::LOVE->value => self::LOVE,
-            default => self::DEFAULT,
+            default => self::NEUTRAL,
         };
+    }
+
+    /**
+     * Check if the value is valid.
+     *
+     * @param  null|InteractionTypeEnum|string  $value
+     *
+     * @return bool
+     */
+    public static function isValid(InteractionTypeEnum|string|null $value = null): bool
+    {
+        if ($value === null) {
+            return false;
+        }
+
+        if ($value instanceof InteractionTypeEnum) {
+            $value = $value->value;
+        }
+
+        return in_array($value, self::getValuesAsStrings());
     }
 }
