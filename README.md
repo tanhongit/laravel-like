@@ -2,6 +2,8 @@
 
 The interaction for User 👍 like, 👎 dislike, and love ❤️ features for Laravel Application.
 
+<img src="https://github.com/cslant/laravel-like-docs/blob/main/assets/public/images/laravel-like-thumb.webp" alt="Laravel Like Package">
+
 <p align="center">
 <a href="#"><img src="https://img.shields.io/github/license/cslant/laravel-like.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/cslant/laravel-like/releases"><img src="https://img.shields.io/github/release/cslant/laravel-like.svg?style=flat-square" alt="Latest Version"></a>
@@ -21,6 +23,10 @@ It is easy to use and can be customized to fit your needs.
 
 - PHP ^8.1
 - Laravel ^9.0|^10.0|^11.0
+
+## 📖 Official Documentation
+
+The detailed documentation is in the **[Laravel Like Package - Official documentation](https://docs.cslant.com/laravel-like/)**.
 
 ## 🔧 Installation
 
@@ -43,3 +49,11 @@ After the configuration file has been published, you can run the migration:
 ```bash
 php artisan migrate
 ```
+
+## 📄 License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+## 🙏 Acknowledgement
+
+This package is inspired by the [laravel-like](https://github.com/overtrue/laravel-like) package by [overtrue](https://github.com/overtrue). I have added some additional features and improvements to the package.
