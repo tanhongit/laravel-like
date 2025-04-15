@@ -6,6 +6,7 @@ use CSlant\LaravelLike\Enums\InteractionTypeEnum;
 use CSlant\LaravelLike\Traits\InteractionRelationship;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Carbon;
 
@@ -27,11 +28,6 @@ use Illuminate\Support\Carbon;
  */
 class Like extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'user_id',
         'model_id',
@@ -39,11 +35,6 @@ class Like extends Model
         'type',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'model_type' => 'string',
         'type' => InteractionTypeEnum::class,
@@ -52,11 +43,16 @@ class Like extends Model
     /**
      * Get the user that owns the like.
      *
-     * @return BelongsTo
+     * @return BelongsTo<*, *>
      */
     public function user(): BelongsTo
     {
         $userModel = (string) (config('like.users.model') ?? config('auth.providers.users.model'));
+
+        if (!is_a($userModel, Model::class, true)) {
+            throw new \InvalidArgumentException("The user model must be a valid Eloquent model class.");
+        }
+
         $userForeignKey = (string) (config('like.users.foreign_key') ?? 'user_id');
 
         return $this->belongsTo($userModel, $userForeignKey);
@@ -65,9 +61,9 @@ class Like extends Model
     /**
      * Get the model that the like belongs to.
      *
-     * @return BelongsTo<Model, self>
+     * @return MorphTo<*, *>
      */
-    public function model(): BelongsTo
+    public function model(): MorphTo
     {
         return $this->morphTo();
     }
